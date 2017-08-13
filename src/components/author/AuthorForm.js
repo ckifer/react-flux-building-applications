@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
+import TextField from 'material-ui/TextField';
 
 function AuthorForm({author, onChange, errors, onSave}) {
 	return (
 		<form>
 			<h1>Manage Author</h1>
-			<TextInput
+			<TextField
 				name="firstName"
-				label="First Name"
+				floatingLabelText="First Name"
 				value={author.firstName}
 				onChange={onChange}
-				error={errors.firstName} />
+				errorText={errors.firstName} />
 
 			<TextInput
 				name="lastName"

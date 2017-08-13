@@ -1,51 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextInput from '../common/TextInput';
-import SelectInput from '../common/SelectInput';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+
+function getAuthorMenuItems(authors) {
+  return authors.map( author => {
+      return <MenuItem 
+        value={author.id}
+        primaryText={author.firstName + ' ' + author.lastName}/>;
+    })
+}
 
 function CourseForm({course, authors, onSave, onChange, saving, errors}) {
   return (
     <form>
       <h1>Manage Course</h1>
-      <TextInput
+      <TextField
+        autowidth={true}
         name="title"
-        label="Title"
+        floatingLabelText="Title"
         value={course.title}
         onChange={onChange}
-        error={errors.title}/>
+        errorText={errors.title}/>
+      <br/>
 
-      <SelectInput
+      <SelectField
         name="authorId"
-        label="Author"
+        floatingLabelText="Author"
         value={course.authorId}
         defaultOption="Select Author"
-        options={authors.map( author => {
-          return {
-            value: author.id, 
-            text: author.firstName + ' ' + author.lastName
-          };
-        })}
+        children={getAuthorMenuItems(authors)}
         onChange={onChange} 
-        error={errors.authorId}/>
+        errorText={errors.authorId}/>
+      <br/>
 
-      <TextInput
+      <TextField
         name="category"
-        label="Category"
+        floatingLabelText="Category"
         value={course.category}
         onChange={onChange}
-        error={errors.category}/>
+        errorText={errors.category}/>
+      <br/>
 
-      <TextInput
+      <TextField
         name="length"
-        label="Length"
+        floatingLabelText="Length"
         value={course.length}
         onChange={onChange}
-        error={errors.length}/>
+        errorText={errors.length}/>
+      <br/>
 
-      <input
-        type="submit"
+      <RaisedButton
+        primary={true}
         disabled={saving}
-        value={saving ? 'Saving...' : 'Save'}
+        label={saving ? 'Saving...' : 'Save'}
         className="btn btn-primary"
         onClick={onSave}/>
     </form>

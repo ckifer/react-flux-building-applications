@@ -1,37 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 function CourseList({ courses, deleteCourse }) {
   return (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Category</th>
-          <th>Length</th>
-        </tr>
-      </thead>
-      <tbody>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderColumn>&nbsp;</TableHeaderColumn>
+          <TableHeaderColumn>&nbsp;</TableHeaderColumn>
+          <TableHeaderColumn>Title</TableHeaderColumn>
+          <TableHeaderColumn>Author</TableHeaderColumn>
+          <TableHeaderColumn>Category</TableHeaderColumn>
+          <TableHeaderColumn>Length</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {
           courses.map(course => {
             return (
-              <tr key={course.id}>
-                <td><button onClick={deleteCourse} value={course.id}>Delete</button></td>
-                <td><a href={course.watchHref}>Watch</a></td>
-                <td><Link to={'/course/' + course.id}>{course.title}</Link></td>
-                <td>{course.authorId}</td>
-                <td>{course.category}</td>
-                <td>{course.length}</td>
-              </tr>
+              <TableRow key={course.id}>
+                <TableRowColumn><button onClick={deleteCourse} value={course.id}>Delete</button></TableRowColumn>
+                <TableRowColumn><a href={course.watchHref}>Watch</a></TableRowColumn>
+                <TableRowColumn><Link to={'/course/' + course.id}>{course.title}</Link></TableRowColumn>
+                <TableRowColumn>{course.authorId}</TableRowColumn>
+                <TableRowColumn>{course.category}</TableRowColumn>
+                <TableRowColumn>{course.length}</TableRowColumn>
+              </TableRow>
             )
           })
         }
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 };
 

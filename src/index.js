@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import App from './components/App';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import registerServiceWorker from './registerServiceWorker';
 // Note: I don't technically need these imports since they're imported 
 // on ManageCoursePage.js, but for the calls to loadAuthors and loadCourses
@@ -13,11 +15,17 @@ import courseStore from './stores/courseStore'; // eslint-disable-line no-unused
 import {loadCourses} from './actions/courseActions';
 import {loadAuthors} from './actions/authorActions';
 
+// This is used by material-ui
+injectTapEventPlugin();
+
+// Populate Flux store
 loadAuthors();
 loadCourses();
 
 render(
-  <Router>
-    <Route path="/" component={App} />
-  </Router>, document.getElementById('root'));
+  <MuiThemeProvider>
+    <Router>
+      <Route path="/" component={App} />
+    </Router>
+  </MuiThemeProvider>, document.getElementById('root'));
 registerServiceWorker();

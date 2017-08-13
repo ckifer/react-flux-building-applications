@@ -2,7 +2,7 @@ import React from 'react';
 import CourseList from './CourseList';
 import courseStore from '../../stores/courseStore';
 import { deleteCourse } from '../../actions/courseActions';
-import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class CoursesPage extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class CoursesPage extends React.Component {
     return (
       <div>
         <h1>Courses</h1>
-        <Link to="/course">Add Course</Link>
+        <RaisedButton label="Add Course" href="/course" primary={true} />
         <CourseList courses={this.state.courses} deleteCourse={this.onDeleteCourseClick} />
       </div>
     );
