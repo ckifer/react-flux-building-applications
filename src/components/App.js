@@ -26,9 +26,9 @@ class App extends Component {
       <div className="container-fluid">
         <Header/>
         <Switch>
-          <Route exact path="/" component={HomePage}/>
+          <Route path="/" component={HomePage} exact/>
           <Route path="/courses" component={CoursesPage}/>
-          <Route path="/course" component={ManageCoursePage} exact />
+          <Route path="/course" component={ManageCoursePage} exact/>
           <Route path="/course/:id" component={ManageCoursePage}/>
           <Route path="/about" component={AboutPage}/>
           <Route path="/404" component={NotFoundPage}/>
